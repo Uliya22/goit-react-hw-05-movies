@@ -6,6 +6,7 @@ import ImageGallery from './imageGallery/ImageGallery';
 import Loader from './loader/Loader';
 import Button from './button/Button';
 import Modal from "./modal/Modal";
+import fetchImages from 'servises/apiServices';
 import css from './App.module.css';
 
 class App extends Component {
@@ -27,23 +28,14 @@ class App extends Component {
     ) {
       this.setState({ status: 'pending' });
 
-      const URL = 'https://pixabay.com/api/';
-      const KEY = '29802477-d1d969a8ee1732cb5f7983921';
-      const FILTER = 'photo&orientation=horizontal&per_page=12';
-
-      fetch(
-        `${URL}?q=${this.state.searchValue}&page=${this.state.page}&key=${KEY}&image_type=${FILTER}`
-      )
+      fetchImages (this.state.searchValue, this.state.page)
         .then(response => {
-          if (response.ok) {
-            return response.json();
+          if (response.totalHits === 0) {
+            return Promise.reject(
+              new Error(`No photos with name ${this.state.searchValue}`)
+            );
           }
-          return Promise.reject(
-            new Error(`No photos with name ${this.state.searchValue}`)
-          );
-        })
 
-        .then(response => {
           const images = response.hits.map(hit => ({
             id: hit.id,
             tags: hit.tags,
@@ -102,13 +94,20 @@ class App extends Component {
       return (
         <div>
           <Searchbar onSubmit={this.handleSubmit} />;
+          <ImageGallery images={images} openModal={this.openModal} />
           <Loader />;
         </div>
       );
     }
 
     if (status === 'rejected') {
-      return <h1>{error.message}</h1>;
+      return (
+        <div>
+          <Searchbar onSubmit={this.handleSubmit} />
+          <h1>{error.message}</h1>
+        </div>
+      );
+     
     }
 
     if (status === 'resolved') {

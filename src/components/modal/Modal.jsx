@@ -10,13 +10,18 @@ const Modal = ({ onClose, currentImageUrl, currentImageDescription }) => {
     }
   };
 
-  const handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      onClose();
-    }
-  };
+  // const handleKeyDown = event => {
+  //   if (event.code === 'Escape') {
+  //     onClose();
+  //   }
+  // };
 
   useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.code === 'Escape') {
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);

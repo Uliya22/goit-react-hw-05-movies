@@ -1,52 +1,47 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Component } from 'react';
 import { toast } from 'react-toastify';
 import css from './Searchbar.module.css';
 
-class Searchbar extends Component {
-  state = {
-    searchValue: '',
+const Searchbar = ({onSubmit}) => { 
+  const [searchValue, setSearchValue] = useState('');
+  
+  const handleChange = (e) => {
+    setSearchValue (e.currentTarget.value.toLowerCase());
   };
 
-  handleChange = e => {
-    this.setState({ searchValue: e.currentTarget.value.toLowerCase() });
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    if (this.state.searchValue.trim() === '') {
+    if (searchValue.trim() === '') {
       toast.error('Введіть значення')
-        return;
-    }
+      return;
+  }
+  onSubmit (searchValue);
+  setSearchValue('');
+  }
 
-      this.props.onSubmit(this.state.searchValue);
-      this.setState({ searchValue: '' });
-    };
-
-    render() {
-      return (
+   return (
         <header className={css.searchbar}>
-          <form className={css.searchForm} onSubmit={this.handleSubmit}>
-            <button type="submit" className={css.searchButton}>
-              <span className={css.buttonLabel}>Search</span>
-            </button>
+         <form className={css.searchForm} onSubmit={handleSubmit}>
+           <button type="submit" className={css.searchButton}>
+           <span className={css.buttonLabel}>Search</span>
+         </button>
 
-            <input
+         <input
               className={css.searchInput}
               type="text"
               placeholder="Search images and photos"
-              value={this.state.searchValue}
-              onChange={this.handleChange}
+              value={searchValue}
+           onChange={handleChange}
             />
           </form>
         </header>
       )
-    }
-  };
+}
 
 Searchbar.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-  };
-
+};
+ 
 export default Searchbar;

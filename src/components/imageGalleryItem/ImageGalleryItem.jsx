@@ -8,12 +8,14 @@ const ImageGalleryItem = ({
   openModal,
 }) => {
   return (
-    <li className={css.galleryItem} onClick={openModal}>
+    <li className={css.galleryItem}
+      onClick={() => openModal(largeImage, description)}
+    >
       <img
         className={css.galleryItemImage}
         src={smallImage}
         alt={description}
-        data-large={largeImage}
+        // data-large={largeImage}
       />
     </li>
   );

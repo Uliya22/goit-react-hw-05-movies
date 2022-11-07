@@ -62,16 +62,11 @@ const App = () => {
 
   const toggleModal = () => setShowModal(prevState => !prevState);
 
-  const openModal = event => {
-    const currentImageUrl = event.target.dataset.large;
-    const currentImageDescription = event.target.alt;
-
-    if (event.target.nodeName === 'IMG') {
-      setShowModal(prevState => !prevState);
-      setCurrentImageUrl(currentImageUrl);
-      setCurrentImageDescription(currentImageDescription);
-    }
-  };
+  const openModal = (imgUrl, alt) => {
+      setShowModal((prevState) => !prevState);
+      setCurrentImageUrl(imgUrl);
+      setCurrentImageDescription(alt);
+      };
 
   if (status === 'idle') {
     return (

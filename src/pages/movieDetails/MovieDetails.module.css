@@ -1,0 +1,88 @@
+.movieDetailsWrapper {
+  display: flex;
+  padding: 5px 30px 20px;
+}
+
+.movieDetailsImage {
+  max-height: 350px;
+}
+.movieDetailsContainer {
+  padding: 0 20px;
+}
+.voteContainer {
+  display: flex;
+  margin-top: 5px;
+}
+.movieDetailsTitle {
+  font-size: 36px;
+  margin-top: 20px;
+}
+.textTitle {
+  margin-top: 20px;
+  font-size: 24px;
+}
+.text {
+  font-size: 20px;
+  margin-top: 5px;
+}
+.voteText {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.voteText:not(:last-child) {
+  margin-right: 20px;
+}
+
+.informationContainer {
+  padding: 10px 50px;
+  box-shadow: 0 0 10px rgba(194, 194, 194, 0.6);
+}
+
+.link {
+  display: block;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(120, 134, 240, 0.831);
+}
+
+.backButton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgba(69, 89, 240, 0.831);
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px 50px;
+}
+
+.backButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.backButton span:before {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+
+.backButton:hover span {
+  padding-left: 25px;
+}
+
+.backButton:hover span:before {
+  opacity: 1;
+  left: 0;
+}

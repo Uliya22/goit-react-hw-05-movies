@@ -1,47 +1,48 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import css from './Searchbar.module.css';
+import css from './SearchBar.module.css';
 
-const Searchbar = ({onSubmit}) => { 
-  const [searchValue, setSearchValue] = useState('');
-  
-  const handleChange = (e) => {
-    setSearchValue (e.currentTarget.value.toLowerCase());
+const SearchBar = function ({ onSubmit }) {
+  const [query, setQuery] = useState('');
+
+  const handleChange = e => setQuery(e.currentTarget.value.toLowerCase());
+  console.log(query);
+
+  const handleSubmitForm = e => {
+    e.preventDefault();
+
+    if (query.trim() === '') {
+      toast.error('Введіть значення');
+      return;
+    }
+    onSubmit(query);
+    setQuery('');
+    e.target.reset();
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  return (
+    <div>
+      <header className={css.searchbar}>
+        <form className={css.searchForm} onSubmit={handleSubmitForm}>
+          <button type="submit" className={css.searchFormButton}>
+            <span className={css.buttonLabel}>Search</span>
+          </button>
 
-    if (searchValue.trim() === '') {
-      toast.error('Введіть значення')
-      return;
-  }
-  onSubmit (searchValue);
-  setSearchValue('');
-  }
-
-   return (
-        <header className={css.searchbar}>
-         <form className={css.searchForm} onSubmit={handleSubmit}>
-           <button type="submit" className={css.searchButton}>
-           <span className={css.buttonLabel}>Search</span>
-         </button>
-
-         <input
-              className={css.searchInput}
-              type="text"
-              placeholder="Search images and photos"
-              value={searchValue}
-           onChange={handleChange}
-            />
-          </form>
-        </header>
-      )
-}
-
-Searchbar.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+          <input
+            className={css.searchFormInput}
+            type="text"
+            placeholder="Search movies"
+            onChange={handleChange}
+          />
+        </form>
+      </header>
+    </div>
+  );
 };
- 
-export default Searchbar;
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default SearchBar;

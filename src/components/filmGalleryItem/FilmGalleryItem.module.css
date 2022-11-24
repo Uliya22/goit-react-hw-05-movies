@@ -1,0 +1,26 @@
+.galleryItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filmTitle {
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: rgba(69, 89, 240, 0.831);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.voteText {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(69, 89, 240, 0.831);
+}
+.link {
+  text-decoration: none;
+}

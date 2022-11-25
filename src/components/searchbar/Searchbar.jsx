@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import css from './SearchBar.module.css';
 
-const SearchBar = function ({ onSubmit }) {
+const SearchBar =  ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
   const handleChange = e => setQuery(e.currentTarget.value.toLowerCase());

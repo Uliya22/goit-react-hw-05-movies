@@ -16,20 +16,17 @@ const Movie = () => {
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle');
-  // const searchQuery = searchParams.get('searchQuery');
+  const value = searchParams.get('query');
   useEffect(() => {
-    if (query && page) {
+    if (value && page) {
       setStatus('pending');
 
-      getSearchMovies(query, page)
+      getSearchMovies(value, page)
         .then(responce => {
-         
           const filmsData = responce.data;
-         
           if (filmsData.results.length === 0) {
             return Promise.reject(new Error(`No films with name "${query}"`));
           }
-
           const filmsQuery = filmsData.results.map(result => ({
             id: result.id,
             title: result.original_title,
@@ -37,7 +34,6 @@ const Movie = () => {
             voteAverage: result.vote_average,
             voteCount: result.vote_count,
           }));
-
           setfilmsQuery(prevState => [...prevState, ...filmsQuery]);
           setStatus('resolved');
         })
@@ -46,7 +42,7 @@ const Movie = () => {
           setStatus('rejected');
         });
     }
-  }, [query, page]);
+  }, [value, page]);
 
   const handleFormSubmit = query => {
     setQuery(query);

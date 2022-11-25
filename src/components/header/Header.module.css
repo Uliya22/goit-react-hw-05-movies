@@ -4,6 +4,13 @@
   border-bottom: 2px solid #cecece;
   box-shadow: 0 0 10px rgba(194, 194, 194, 0.6);
 }
+
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
 .link {
   text-decoration: none;
   font-size: 28px;
@@ -12,11 +19,6 @@
   color: black;
 }
 
-.link:not(:last-child) {
-  margin-right: 20px;
-}
-
-.link:hover,
-.link:focus {
-  color: rgba(69, 89, 240, 0.831);
+.link:hover {
+  font-weight: 700;
 }

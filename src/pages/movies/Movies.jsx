@@ -42,7 +42,7 @@ const Movie = () => {
           setStatus('rejected');
         });
     }
-  }, [value, page]);
+  }, [value, page, query]);
 
   const handleFormSubmit = query => {
     setQuery(query);

@@ -23,7 +23,7 @@ const SearchBar =  ({ onSubmit }) => {
 
   return (
     <div>
-      <header className={css.searchbar}>
+      <header className={css.searchBar}>
         <form className={css.searchForm} onSubmit={handleSubmitForm}>
           <button type="submit" className={css.searchFormButton}>
             <span className={css.buttonLabel}>Search</span>

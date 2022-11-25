@@ -26,3 +26,12 @@
 .link {
   text-decoration: none;
 }
+.galleryItemImage {
+  border-radius: 8px;
+}
+.galleryItemImage:hover {
+  transform: scale(1.03);
+  transition-duration: 300ms;
+}
+
+

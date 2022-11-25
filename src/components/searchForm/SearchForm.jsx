@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import css from './SearchBar.module.css';
+import css from './SearchForm.module.css';
 
-const SearchBar =  ({ onSubmit }) => {
+const SearchForm =  ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
   const handleChange = e => setQuery(e.currentTarget.value.toLowerCase());
-  console.log(query);
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -23,8 +22,8 @@ const SearchBar =  ({ onSubmit }) => {
 
   return (
     <div>
-      <header className={css.searchBar}>
-        <form className={css.searchForm} onSubmit={handleSubmitForm}>
+      <header className={css.searchForm}>
+        <form className={css.form} onSubmit={handleSubmitForm}>
           <button type="submit" className={css.searchFormButton}>
             <span className={css.buttonLabel}>Search</span>
           </button>
@@ -41,8 +40,8 @@ const SearchBar =  ({ onSubmit }) => {
   );
 };
 
-SearchBar.propTypes = {
+SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default SearchBar;
+export default SearchForm;

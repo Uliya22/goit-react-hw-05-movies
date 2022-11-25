@@ -5,7 +5,6 @@ import css from './FilmGalleryItem.module.css';
 
 
 const FilmGalleryItem = ({ id, title, poster, voteAverage, voteCount }) => {
-  console.log(id);
   const location = useLocation();
   return (
     <li className={css.galleryItem}>

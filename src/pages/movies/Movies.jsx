@@ -1,6 +1,6 @@
 import { useSearchParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import SearchBar from '../../components/searchBar/SearchBar';
+import SearchForm from '../../components/searchForm/SearchForm';
 import { getSearchMovies } from '../../API/getApi';
 import FilmGallery from '../../components/filmGallery/FilmGallery';
 import Button from '../../components/button/Button';
@@ -58,7 +58,7 @@ const Movie = () => {
   if (status === 'idle') {
     return (
       <>
-        <SearchBar onSubmit={handleFormSubmit} />
+        <SearchForm onSubmit={handleFormSubmit} />
         <ToastContainer autoClose={3000} />;
       </>
     );
@@ -67,7 +67,7 @@ const Movie = () => {
   if (status === 'rejected') {
     return (
       <div>
-        <SearchBar onSubmit={handleFormSubmit} />
+        <SearchForm onSubmit={handleFormSubmit} />
         {error && <h1>{error.message}</h1>}
       </div>
     );
@@ -76,7 +76,7 @@ const Movie = () => {
   if (status === 'pending' || 'resolved') {
     return (
       <>
-        <SearchBar onSubmit={handleFormSubmit} />
+        <SearchForm onSubmit={handleFormSubmit} />
         {status !== 'resolved' && <Loader />}
         <FilmGallery films={filmsQuery} />
         {status !== 'pending' && <Button onClick={onNextFetch} />}
